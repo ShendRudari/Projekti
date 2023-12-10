@@ -1,0 +1,102 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    transition: 0.2s linear;
+    text-transform: capitalize;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    scroll-behavior: smooth;
+    
+
+}
+
+body{
+  background: rgb(0, 0, 0);
+  
+}
+.header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 1.5rem 8%;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    justify-content: space-between;
+    transition: 0.5s ease-out;
+  }
+  
+  .header:hover{
+    background-color: #151515b0;
+    transition: 0.5s ease-in;
+  }
+  .header .logo{
+    font-size: 22px;
+    font-weight: bolder;
+    color: #fff;
+    padding-right: 10px;
+    margin-right: 20rem;
+  }
+  .header .logo i{
+    color: #fff;
+    padding: 0.5rem;
+  }
+  .header .navbar a{
+    font-size: 1.1rem;
+    margin: 0 1rem;
+    color: #fff;
+  }
+  .header .navbar a:hover{
+    color: green;
+  }
+  .header .btn{
+    background: transparent;
+    color: rgb(0, 0, 0);
+    border: 1px solid green;
+    font-size: 12px;
+    padding: 8px;
+  }
+  .max-width{
+    max-width: 100%;
+    padding: 0 80px;
+    margin: auto;
+  }
+  section{
+    padding: 50px 0 50px 0;
+  }
+  .SignUp{
+    margin-top: 2rem;
+    width: 150px;
+    padding: 12px;
+    color: #fff;
+    background: green;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    
+}
+.SignUp:hover{
+    background-color: #fff;
+    color:#000000;
+}
+.btnLogin{
+    margin-top: 2rem;
+    width: 150px;
+    padding: 12px;
+    color: #fff;
+    background: rgb(2, 128, 2);
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.btnLogin:hover{
+    background-color: #fff;
+    color:#000000;
+
+}
