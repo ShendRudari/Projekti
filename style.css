@@ -1,4 +1,5 @@
 
+
 *{
     margin: 0;
     padding: 0;
@@ -18,59 +19,252 @@ body{
   background: rgb(0, 0, 0);
   
 }
+#btn{
+  margin-top: 2rem;
+  width: 150px;
+  padding: 12px;
+  color: #fff;
+  background: green;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+#btn{
+    margin-top: 2rem;
+    width: 150px;
+    padding: 12px;
+    color: #fff;
+    background: green;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+#btn:hover{
+    background-color: #fff;
+    color:#000000;
+
+}
+
+
 .header{
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    padding: 1.5rem 8%;
-    display: flex;
-    align-items: center;
-    color: #fff;
-    justify-content: space-between;
-    transition: 0.5s ease-out;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 1.5rem 8%;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  justify-content: space-between;
+  transition: 0.5s ease-out;
+}
+
+.header:hover{
+  background-color: #151515b0;
+  transition: 0.5s ease-in;
+}
+.header .logo{
+  font-size: 22px;
+  font-weight: bolder;
+  color: #fff;
+  padding-right: 10px;
+  margin-right: 20rem;
+}
+.header .logo i{
+  color: #fff;
+  padding: 0.5rem;
+}
+.header .navbar a{
+  font-size: 1.1rem;
+  margin: 0 1rem;
+  color: #fff;
+}
+.header .navbar a:hover{
+  color: green;
+}
+.header .btn{
+  background: transparent;
+  color: rgb(0, 0, 0);
+  border: 1px solid green;
+  font-size: 12px;
+  padding: 8px;
+}
+
+
+.max-width{
+  max-width: 100%;
+  padding: 0 80px;
+  margin: auto;
+}
+section{
+  padding: 50px 0 50px 0;
+}
+.home{
+  display: flex;
+  height: 100vh;
+  background-image: url(./img/headerBg.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.home .max-width{
+  width: 100%;
+  display: flex;
+}
+.home .home-content{
+  width: 50%;
+  padding: 2rem;
+}
+.home h3{
+  color: #fff;
+  margin-top: 6rem;
+  font-size: 5rem;
+  font-family: 'Philosopher', sans-serif;
+}
+.home p{
+  color: rgb(194, 191, 191);
+  margin-top: 1rem;
+  font-size: 12px;
+}
+.home .home-image{
+  width: 50%;
+}
+.home .home-image img{
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+#content{
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  background-image:url(./img/Foto2.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.divi{
+  position: relative;
+  left: 50px;
+  top: 50px;
+  padding: 40px;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  height: fit-content;
+  background-color: rgba(0, 0, 0, 0.23);
+  align-items: baseline;
   
-  .header:hover{
-    background-color: #151515b0;
-    transition: 0.5s ease-in;
-  }
-  .header .logo{
-    font-size: 22px;
-    font-weight: bolder;
-    color: #fff;
-    padding-right: 10px;
-    margin-right: 20rem;
-  }
-  .header .logo i{
-    color: #fff;
-    padding: 0.5rem;
-  }
-  .header .navbar a{
-    font-size: 1.1rem;
-    margin: 0 1rem;
-    color: #fff;
-  }
-  .header .navbar a:hover{
-    color: green;
-  }
-  .header .btn{
-    background: transparent;
-    color: rgb(0, 0, 0);
-    border: 1px solid green;
-    font-size: 12px;
-    padding: 8px;
-  }
-  .max-width{
-    max-width: 100%;
-    padding: 0 80px;
-    margin: auto;
-  }
-  section{
-    padding: 50px 0 50px 0;
-  }
-  .SignUp{
+}
+.divi h1{
+  border-left: 1px solid green;
+  padding-left: 10px;
+  font-size: 40px;
+  color: green;
+  letter-spacing: 1px;
+  align-items:  baseline;
+  
+  
+ 
+
+
+}
+
+.divi p{
+  
+  border-bottom: 1px solid green;
+  padding-left: 10px;
+  text-align:start ;
+  padding-top:30px ;
+  color:white;
+  width: 600px;
+  font-size: 20px;
+}
+.divi h1::first-letter{
+  font-size: 4rem;
+  color:whitesmoke;
+}
+
+#GetStarted {
+  background-image: url(./img/WeightPhoto.webp);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.weight-loss,
+.weight-gain,
+.muscle-building {
+  text-align: center;
+  color: #fff;
+  margin: 20px;
+  width: 30%;
+}
+
+.image-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image-container img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.weight-loss p,
+.weight-gain p,
+.muscle-building p {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: rgba(111, 255, 0, 0.234);
+  width: fit-content;
+  height: fit-content;
+  margin: 10px 0;
+}
+
+.weight-loss h2,
+.weight-gain h2,
+.muscle-building h2 {
+  color: whitesmoke;
+}
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+    .header {
+        padding: 1.5rem 4%;
+    }
+    .header .logo {
+        margin-right: 10rem;
+    }
+    .home {
+        flex-direction: column;
+    }
+    .home .home-content,
+    .home .home-image {
+        width: 100%;
+    }
+}
+.SignUp{
     margin-top: 2rem;
     width: 150px;
     padding: 12px;
@@ -100,3 +294,72 @@ body{
     color:#000000;
 
 }
+
+
+  h1::first-letter{
+    font-size: 2rem;
+    color: #ffffff;
+  }
+  #contact{
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-image: url(./img/Grey.avif);
+}
+
+
+.contact-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(24, 23, 23, 0.362);
+    border: 1px solid green;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+#contact h2 {
+  font: 500;
+    text-align: center;
+    color: green;
+}
+
+#contact p {
+    font-size: 1.3em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: rgb(255, 255, 255);
+}
+
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    color: green;
+}
+
+label {
+    font-size: 1.2em;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    background-color:green;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #245539;
+}
+
