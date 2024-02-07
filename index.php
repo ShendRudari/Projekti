@@ -1,24 +1,22 @@
-<?
-
+<?php
 session_start();
+require_once 'crud/functions.php';
+require_once 'config/Databasee.php';
 
-require_once 'Database.php';
-require_once 'User.php';
 
-$database = new Database("localhost", "root", "", "projektii");
-$user = new \Crud\User($database);
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["login"])) {
         $email = $_POST["email"];
         $password = $_POST["password"];
 
-        if ($user->login($email, $password)) {
-            $userData = $user->getUserByEmail($email);
+        if ($users->login($email, $password)) {
+            $userData = $users->getUserByEmail($email);
 
-            $_SESSION['user_id'] = $userData['id'];
-            $_SESSION['user_name'] = $userData['name'];
-            $_SESSION['user_role'] = $userData['role'];
+            $_SESSION['user_emri'] = $userData['emri'];
+            $_SESSION['user_email'] = $userData['email'];
+            $_SESSION['user_password'] = $userData['password'];
 
             header("Location: index.php");
             exit();
@@ -44,13 +42,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </a>
     <nav class="navbar">
         <a href="#">Home</a>
-        <a href="news.php">New</a>
         <a href="about.php">About Us</a>
         <a href="#contact">Contact us</a>
         <a href="#">|</a>
         <a href="login.php" class="btnLogin">Login</a>
         <a href="Signup.php" class="SignUp">Sign Up</a>
-        <a href="admin.php" class="adminLink">Admin</a>
+        <a href="AdminDashboard.php" class="adminLink">Admin</a>
     </nav>
 </header>
 
@@ -120,4 +117,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 </section>
 </body>
-</html>
+</html> 

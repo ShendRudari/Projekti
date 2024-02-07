@@ -1,150 +1,77 @@
 <?php
 session_start();
 
-require_once 'Database.php';
-require_once 'User.php';
+require 'config/Databasee.php';
+require 'crud/functions.php';
 
 
+$servername = "localhost";
+$db = "projektiii";
+$username = "root";
+$password = "";
 
-$database = new Database("localhost", "root", "", "projektii");
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=$db", $username, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+    echo "Suksese";
+} catch (PDOException $e) {
+    echo "Lidhja deshtoi: " . $e->getMessage();
+}
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["signup"])) {
-    $name = $_POST["name"];
-    $email = $_POST["email"];
-    $password = $_POST["password"];
+if (isset($_POST['submit'])) {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+  
+    $sql = 'INSERT INTO users (emri, email, password) VALUES (:emri, :email, :password)';
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':emri', $name);
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':password', $password);
 
     
-    if (empty($name) || empty($email) || empty($password)) {
-        
-        echo "<div class='text-red-500'>All fields are required.</div>";
+    if ($stmt->execute()) {
+        $_SESSION['email'] = $email;
+        header("Location: news.php");
+        exit();
     } else {
-        
-        $user = new User($database);
-        $registrationResult = $user->register($name, $email, $password);
-
-        if ($registrationResult) {
-           
-            $loginResult = $user->login($email, $password);
-
-            while ($loginResult == true) {
-           
-                header("Location: index.php");
-                exit();
-            } 
-        } else {
-            echo "<div class='text-red-500'>Registration failed. Please try again.</div>";
-        }
+        $message = "there is a problem creating this account!";
     }
 }
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
     <link rel="stylesheet" type="text/css" href="style3.css">
 </head>
 <body>
 
+<div class="signup">
+    <h2>Sigup</h2>
 
-   <div class="signup">
-        <h2>Sign Up</h2>
-    
+    <form method="post">
+        <div class="user name">
+            <input type="text" name="name" placeholder="Name" required>
+        </div>
 
-        <form onsubmit="return validationForm()">
-            <div class="user name">
-                <input id="name" type="text" name="name" placeholder="Your Name">
-            </div>
+        <div class="user email">
+            <input type="email" name="email" placeholder="example@gmail.com" required>
+        </div>
 
-            <div class="user email">
-                <input id="email" type="email" name="email" placeholder="example@gmail.com">
-            </div>
+        <div class="user password">
+            <input type="password" name="password" placeholder="Password" required>
+        </div>
 
-            <div class="user password">
-                <input id="password" type="password" name="password" placeholder="Password">
-            </div>
+        <div class="user confirm-password">
+            <input type="password" name="confirmPassword" placeholder="Confirm Password" required>
+        </div>
 
-            <div class="user confirm-password">
-                <input id="confirmPassword" type="password" name="confirmPassword" placeholder="Confirm Password">
-            </div>
-
-            
-
- <script> 
-public function insertoDhenat(){
-$sql="INSERT INTO Studenti (emri,mbiemri,departamenti,adresa) VALUES (?,?,?,?)";
-$stm=$this->dbconn->prepare($sql);
-$stm->execute([$this->emri,$this->mbiemri,$this->departamenti,$this->adresa]);
-echo "<script>
-alert('dhenat jane ruajtur me sukses');
-document.location='displayDhenat.php';
-</script>
-}
-
-            <button type="submit">Submit</button>
-        </form>
-    </div>
-
-    <script>
-        function validationForm() {
-            var name = document.getElementById('name').value;
-            var email = document.getElementById('email').value;
-            var password = document.getElementById('password').value;
-            var confirmPassword = document.getElementById('confirmPassword').value;
-
-            var nameRegex = /^[a-zA-Z\s]+$/;
-            if (!nameRegex.test(name)) {
-                alert('Please enter a valid name!');
-                return false;
-            }
-
-            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert('Please enter a valid email address!');
-                return false;
-            }
-
-            if (password.length < 6) {
-                alert('Password must be at least 6 characters!');
-                return false;
-            }
-
-            if (password !== confirmPassword) {
-                alert('Passwords do not match!');
-                return false;
-            }
-
-            return true;
-        }
-    </script>
-    <?php
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST["username"];
-    $password = $_POST["password"];
-
-    // Kërko përdoruesin në bazë të emrit të përdoruesit
-    $query = "SELECT * FROM users WHERE username='$username'";
-    $result = mysqli_query($conn, $query);
-    $user = mysqli_fetch_assoc($result);
-
-   
-    if ($user && password_verify($password, $user["password"])) {
-        
-        $role = $user["role"];
-      
-    } else {
-        
-    }
-}
-?>
-
- 
-
+        <button type="submit" name="submit">Signup</button>
+    </form>
+</div>
 
 </body>
 </html>
