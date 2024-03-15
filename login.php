@@ -22,10 +22,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($user) {
         $loggedIn = true;
 
-        // Check the role of the user
+       
         $role = $user['roli'];
 
-        // Redirect based on the role
+        
         if ($role == 'admin') {
             $_SESSION['email'] = $email;
             header("Location: admindashboard.php");
