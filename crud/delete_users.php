@@ -1,5 +1,5 @@
 <?php
-include 'functions.php';
+require_once 'functions.php';
 
 $conn = connectDatabase();
 
@@ -7,7 +7,7 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
     if (deleteUser($conn, $id)) {
-        header("location:AdminDashboard.php");
+        header("location: ../Admindashboard.php"); // Redirect to Admin Dashboard
         exit();
     } else {
         echo "Oops! Something went wrong. Please try again later.";
@@ -15,5 +15,4 @@ if (isset($_GET['id'])) {
 } else {
     echo "Error: No user ID specified.";
 }
-
 ?>
