@@ -1,4 +1,21 @@
+<?php
+session_start();
+
+// Check if the user is not logged in
+if (!isset($_SESSION['email'])) {
+    header("Location: login.php");
+    exit();
+}
+
+// Check if the user has logged out previously
+if (isset($_SESSION['logged_out']) && $_SESSION['logged_out'] === true) {
+    header("Location: login.php");
+    exit();
+}
+
+?>
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -14,20 +31,20 @@
         <h1>Fitness News</h1>
     </header>
     <form method="get" action="logout.php">
-            <button type="submit" class="btn btn-primary">Logout</button>
-        </form>
+        <button type="submit" class="btn btn-primary">Logout</button>
+    </form>
     <nav>
         <ul>
             <li><a href="workout.php">Workouts</a></li>
             <li><a href="nutrition.php">Nutrition</a></li>
-            <li><a href="#">Tips</a></li>
+
         </ul>
     </nav>
     <div class="container main-content">
-      
+
         <div id="articleCarousel" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
-             
+
                 <div class="carousel-item active">
                     <div class="article">
                         <img src="health-1.jpg" alt="Fitness Article Image">
@@ -48,7 +65,7 @@
                         <a href="#" onclick="toggleReadMore(this)" class="read-more-link">Read more</a>
                     </div>
                 </div>
-                
+
                 <div class="carousel-item">
                     <div class="article">
                         <img src="Exercise_Prescription_for_Life.png" alt="Fitness Article Image">
@@ -73,7 +90,7 @@
                     </div>
                 </div>
             </div>
-          
+
             <a class="carousel-control-prev" href="#articleCarousel" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
