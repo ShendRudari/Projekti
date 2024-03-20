@@ -1,7 +1,6 @@
 <?php
 require_once 'crud/functions.php';
 $conn = connectDatabase();
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
  
     if(isset($_POST['emri']) && isset($_POST['email']) && isset($_POST['password'])) {
