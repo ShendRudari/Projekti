@@ -1,8 +1,12 @@
 <?php
 session_start();
-
-require_once 'config/Databasee.php'; 
 require_once 'crud/functions.php';
+
+// Check if the user has logged out previously
+if (isset($_SESSION['logged_out']) && $_SESSION['logged_out'] === true) {
+    unset($_SESSION['logged_out']);
+    $error = "You have been logged out. Please log in again.";
+}
 
 $loggedIn = false;
 
@@ -22,10 +26,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($user) {
         $loggedIn = true;
 
-       
+        // Reset flag indicating logout
+        unset($_SESSION['logged_out']);
+
         $role = $user['roli'];
 
-        
         if ($role == 'admin') {
             $_SESSION['email'] = $email;
             header("Location: admindashboard.php");
@@ -36,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         }
     } else {
-        $error = "Invalid email or password"; 
+        $error = "Invalid email or password";
     }
 }
 ?>
