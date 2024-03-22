@@ -1,13 +1,13 @@
 <?php
 session_start();
 
-// Check if the user is not logged in
+
 if (!isset($_SESSION['email'])) {
     header("Location: login.php");
     exit();
 }
 
-// Check if the user has logged out previously
+
 if (isset($_SESSION['logged_out']) && $_SESSION['logged_out'] === true) {
     header("Location: login.php");
     exit();
