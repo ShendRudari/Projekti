@@ -1,23 +1,37 @@
 <?php
 session_start();
 require_once 'crud/functions.php';
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset ($_POST["login"])) {
-        $email = $_POST["email"];
-        $password = $_POST["password"];
 
-        if ($users->login($email, $password)) {
-            $userData = $users->getUserByEmail($email);
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset ($_POST["login"])) {
+    $email = $_POST["email"];
+    $password = $_POST["password"];
 
-            $_SESSION['user_emri'] = $userData['emri'];
-            $_SESSION['user_email'] = $userData['email'];
-            $_SESSION['user_password'] = $userData['password'];
+    $conn = connectDatabase();
 
-            header("Location: index.php");
+    if (!$conn) {
+        echo "Error";
+        exit();
+    }
+
+
+
+    if ($user) {
+        if (password_verify($password, $user['password'])) {
+
+            $_SESSION['email'] = $email;
+            if ($user['role'] == 'admin') {
+                header("Location: AdminDashboard.php");
+            } else {
+                header("Location: news.php");
+            }
             exit();
         } else {
-            echo "Invalid login credentials. Please try again.";
+
+            $error = "Invalid email or password";
         }
+    } else {
+
+        $error = "Invalid email or password";
     }
 }
 ?>
@@ -42,9 +56,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <a href="about.php">About Us</a>
             <a href="#contact">Contact us</a>
             <a href="#">|</a>
-            <a href="login.php" class="btnLogin">Login</a>
-            <a href="Signup.php" class="SignUp">Sign Up</a>
-            <a href="AdminDashboard.php" class="adminLink">Admin</a>
+            <?php if (isset ($_SESSION['email'])): ?>
+                <?php if (isset ($user) && $user['role'] == 'admin'): ?>
+                    <a href="AdminDashboard.php" class="adminLink">Admin</a>
+                <?php else: ?>
+                    <a href="news.php">News</a>
+                <?php endif; ?>
+            <?php else: ?>
+                <a href="login.php" class="btnLogin">Login</a>
+                <a href="Signup.php" class="SignUp">Sign Up</a>
+            <?php endif; ?>
         </nav>
     </header>
 
