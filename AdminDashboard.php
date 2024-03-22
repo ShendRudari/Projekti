@@ -2,17 +2,17 @@
 require_once 'crud/functions.php';
 $conn = connectDatabase();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
- 
-    if(isset($_POST['emri']) && isset($_POST['email']) && isset($_POST['password'])) {
+
+    if (isset ($_POST['emri']) && isset ($_POST['email']) && isset ($_POST['password'])) {
         $emri = $_POST['emri'];
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-       
+
         addUser($conn, $emri, $email, $password);
 
-        
-        header("Location: ".$_SERVER['PHP_SELF']);
+
+        header("Location: " . $_SERVER['PHP_SELF']);
         exit;
     }
 }
@@ -20,6 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,16 +31,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             width: 100%;
             border-collapse: collapse;
         }
-        th, td {
+
+        th,
+        td {
             border: 1px solid #ddd;
             padding: 8px;
             text-align: left;
         }
+
         th {
             background-color: #f2f2f2;
         }
     </style>
 </head>
+
 <body>
     <h2>User Management</h2>
 
@@ -78,4 +83,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="submit" value="Submit">
     </form>
 </body>
+
 </html>
