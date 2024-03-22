@@ -2,8 +2,8 @@
 session_start();
 require_once 'crud/functions.php';
 
-// Check if the user has logged out previously
-if (isset($_SESSION['logged_out']) && $_SESSION['logged_out'] === true) {
+
+if (isset ($_SESSION['logged_out']) && $_SESSION['logged_out'] === true) {
     unset($_SESSION['logged_out']);
     $error = "You have been logged out. Please log in again.";
 }
@@ -26,18 +26,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($user) {
         $loggedIn = true;
 
-        // Reset flag indicating logout
+
         unset($_SESSION['logged_out']);
 
         $role = $user['roli'];
 
         if ($role == 'admin') {
             $_SESSION['email'] = $email;
-            header("Location: admindashboard.php");
+            header("Location: AdminDashboard.php");
             exit();
         } else {
             $_SESSION['email'] = $email;
-            header("Location: news.php");
+            header("Location: index.php");
             exit();
         }
     } else {
@@ -48,17 +48,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" type="text/css" href="style2.css">
 </head>
+
 <body>
     <div class="login">
         <h2>Login</h2>
 
-        <?php if (isset($error)): ?>
+        <?php if (isset ($error)): ?>
             <div class="error-message">
                 <?php echo $error; ?>
             </div>
@@ -96,4 +98,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     </script>
 </body>
+
 </html>
