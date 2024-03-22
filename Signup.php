@@ -2,7 +2,7 @@
 session_start();
 
 // Check if the user is already logged in
-if (isset($_SESSION['email'])) {
+if (isset ($_SESSION['email'])) {
     header("Location: news.php");
     exit();
 }
@@ -20,23 +20,35 @@ try {
     echo "Connection failed: " . $e->getMessage();
 }
 
-if (isset($_POST['submit'])) {
+$message = "";
+
+if (isset ($_POST['submit'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $password = $_POST['password'];
+    $confirmPassword = $_POST['confirmPassword'];
 
-    $sql = 'INSERT INTO users (emri, email, password) VALUES (:emri, :email, :password)';
-    $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':emri', $name);
-    $stmt->bindParam(':email', $email);
-    $stmt->bindParam(':password', $password);
-
-    if ($stmt->execute()) {
-        $_SESSION['email'] = $email;
-        header("Location: news.php");
-        exit();
+    // Check if passwords match
+    if ($password !== $confirmPassword) {
+        $message = "Passwords do not match!";
     } else {
-        $message = "There is a problem creating this account!";
+        // Hash the password
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        // Insert user into database
+        $sql = 'INSERT INTO users (emri, email, password) VALUES (:emri, :email, :password)';
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':emri', $name);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':password', $hashedPassword);
+
+        if ($stmt->execute()) {
+            $_SESSION['email'] = $email;
+            header("Location: index.php"); // Redirect to index page after signup
+            exit();
+        } else {
+            $message = "There is a problem creating this account!";
+        }
     }
 }
 ?>
@@ -54,6 +66,12 @@ if (isset($_POST['submit'])) {
 
     <div class="signup">
         <h2>Signup</h2>
+
+        <?php if (!empty ($message)): ?>
+            <p>
+                <?php echo $message; ?>
+            </p>
+        <?php endif; ?>
 
         <form method="post">
             <div class="user name">
