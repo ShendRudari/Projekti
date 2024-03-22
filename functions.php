@@ -94,4 +94,18 @@ function deleteUser($conn, $id)
     return executeQuery($conn, $query, $params);
 }
 
+function getUserRole($conn, $email)
+{
+    $query = "SELECT role FROM users WHERE email=?";
+    $params = [$email];
+    $stmt = executeQuery($conn, $query, $params);
+    if ($stmt) {
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($result) {
+            return $result['role'];
+        }
+    }
+    return null;
+}
+
 ?>
