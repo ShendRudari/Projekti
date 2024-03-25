@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Check if the user is already logged in
+
 if (isset ($_SESSION['email'])) {
     header("Location: news.php");
     exit();
@@ -28,14 +28,14 @@ if (isset ($_POST['submit'])) {
     $password = $_POST['password'];
     $confirmPassword = $_POST['confirmPassword'];
 
-    // Check if passwords match
+
     if ($password !== $confirmPassword) {
         $message = "Passwords do not match!";
     } else {
-        // Hash the password
+      
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-        // Insert user into database
+    
         $sql = 'INSERT INTO users (emri, email, password) VALUES (:emri, :email, :password)';
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':emri', $name);
@@ -44,7 +44,7 @@ if (isset ($_POST['submit'])) {
 
         if ($stmt->execute()) {
             $_SESSION['email'] = $email;
-            header("Location: index.php"); // Redirect to index page after signup
+            header("Location: index.php"); 
             exit();
         } else {
             $message = "There is a problem creating this account!";
