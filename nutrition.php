@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,7 +17,7 @@
         <ul>
             <li><a href="workout.php">Workouts</a></li>
             <li><a href="nutrition.php">Nutrition</a></li>
-            <li><a href="#">Tips</a></li>
+   
         </ul>
     </nav>
     <div class="container main-content">
