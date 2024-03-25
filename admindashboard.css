@@ -89,3 +89,12 @@ input[type="submit"]:hover {
 .btn-link:hover {
     text-decoration: underline;
 }
+.logout-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 5px;
+    background: none;
+    border: none;
+    color: #000;
+    cursor: pointer;
+}

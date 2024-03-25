@@ -6,6 +6,6 @@ $_SESSION = array();
 $_SESSION['logged_out'] = true;
 session_destroy();
 
-header("Location: login.php");
+header("Location: index.php");
 exit();
 ?>
