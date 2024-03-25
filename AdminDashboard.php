@@ -1,16 +1,24 @@
 <?php
+session_start();
+
 require_once 'crud/functions.php';
 $conn = connectDatabase();
+
+
+if(isset($_POST['logout'])) {
+    $_SESSION = array(); 
+    session_destroy(); 
+    header("Location: index.php"); 
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    if (isset ($_POST['emri']) && isset ($_POST['email']) && isset ($_POST['password'])) {
+    if (isset($_POST['emri']) && isset($_POST['email']) && isset($_POST['password'])) {
         $emri = $_POST['emri'];
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-
         addUser($conn, $emri, $email, $password);
-
 
         header("Location: " . $_SERVER['PHP_SELF']);
         exit;
@@ -27,25 +35,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="admindashboard.css">
     <title>Admin Dashboard</title>
     <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th,
-        td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f2f2f2;
+        .logout-btn {
+            position: absolute;
+            bottom: 10px;
+            right: 5px;
+            background: none;
+            border: none;
+            color: #000; 
+            cursor: pointer;
         }
     </style>
 </head>
 
 <body>
+    <!-- Logout button -->
+    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="logout-btn">
+        <input type="submit" name="logout" value="Logout">
+    </form>
+
     <h2>User Management</h2>
 
     <table>
