@@ -21,7 +21,7 @@
         </ul>
     </nav>
     <div class="container main-content">
-        <h2>Nutrition Tips for Healthy Living</h2>
+        <h2><strong> Nutrition Tips for Healthy Living </strong> </h2>
         <div class="nutrition-article">
             <img src="./img/Nutrition.jpg" alt="Nutrition Image">
             <p>Here are some essential nutrition tips to support your fitness journey:</p>
