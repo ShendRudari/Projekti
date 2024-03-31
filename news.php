@@ -48,7 +48,7 @@ if (isset($_SESSION['logged_out']) && $_SESSION['logged_out'] === true) {
                 <div class="carousel-item active">
                     <div class="article">
                         <img src="health-1.jpg" alt="Fitness Article Image">
-                        <h2>10 Tips for a Healthier Lifestyle</h2>
+                        <h2><strong > 10 Tips for a Healthier Lifestyle </strong></h2>
                         <p>Discover the top 10 tips for maintaining a healthy and active lifestyle...</p>
                         <div class="read-more">
                             <p>Living a healthy lifestyle involves making informed decisions about what you eat, how you
@@ -69,7 +69,7 @@ if (isset($_SESSION['logged_out']) && $_SESSION['logged_out'] === true) {
                 <div class="carousel-item">
                     <div class="article">
                         <img src="Exercise_Prescription_for_Life.png" alt="Fitness Article Image">
-                        <h2>Effective Cardio Workouts for Beginners</h2>
+                        <h2> <strong> Effective Cardio Workouts for Beginners </strong> </h2>
                         <p>If you're new to fitness, here are some cardio workouts to get you started on your fitness
                             journey...</p>
                         <div class="read-more">
