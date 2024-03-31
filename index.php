@@ -1,5 +1,7 @@
 <?php
-//Shend Rudari Drin Citaku
+
+//Drin Citaku   Gr: G3A  id:222364985  
+//Shend Rudari  Gr: G3B  id:222364786
 session_start();
 require_once 'crud/functions.php';
 
@@ -128,8 +130,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset ($_POST["login"])) {
 
         <div class="contact-container">
             <h2>Contact Us</h2>
-            <p>If you have any questions or inquiries, feel free to reach out to us. We are here to assist you on your
-                fitness journey.</p>
+            <p> <em> If you have any questions or inquiries, feel free to reach out to us. We are here to assist you on your
+                fitness journey. </em></p>
             <form action="#" method="post">
                 <label for="name">Your Name</label>
                 <input type="text" id="name" name="name" required>
