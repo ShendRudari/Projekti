@@ -159,6 +159,7 @@ section {
 }
 
 #GetStarted {
+background-color: #45464590;
   background-image: url(./img/WeightPhoto.webp);
   background-size: cover;
   background-position: center;
@@ -194,14 +195,14 @@ section {
 .muscle-building p {
   padding: 20px;
   border-radius: 10px;
-  background-color: rgba(111, 255, 0, 0.234);
+  background-color: rgba(255, 255, 255, 0.234);
   margin: 10px 0;
 }
 
 .weight-loss h2,
 .weight-gain h2,
 .muscle-building h2 {
-  color: whitesmoke;
+  color: rgba(0, 236, 47, 0.462);
 }
 
 @media only screen and (max-width: 768px) {
@@ -255,7 +256,7 @@ section {
   }
 
   .home .home-image {
-      width: 100%;
+      width: 99%;
   }
 
   .divi {
@@ -327,12 +328,12 @@ form {
 }
 
 label {
-  font-size: 1.2em;
+  font-size: 1.1em;
 }
 
 input,
 textarea {
-  width: 100%;
+  width: 99%;
   padding: 10px;
   font-size: 1em;
   border: 1px solid #ddd;
@@ -340,7 +341,7 @@ textarea {
 }
 
 input[type="submit"] {
-  background-color: green;
+  background-color: rgb(128, 255, 0);
   color: white;
   padding: 10px;
   border: none;
@@ -349,5 +350,5 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-  background-color: #245539;
+  background-color: #ea0e0e;
 }
