@@ -1,25 +1,27 @@
 :root {
-    --color: green; 
+    --color: green;
+    --input-border-color: var(--color);
+    --button-background: #4d484843;
 }
 
 body {
     height: 100vh;
+    display: flex;
     justify-content: center;
     align-items: center;
-    display: flex;
     background: #242424;
     margin: 0;
-}
-
-.signup h2 {
-    margin: 0 0 30px;
-    color: var(--color);
 }
 
 .signup {
     background: transparent;
     width: 400px;
     padding: 40px;
+}
+
+.signup h2 {
+    margin: 0 0 30px;
+    color: var(--color);
 }
 
 .signup .user {
@@ -35,7 +37,7 @@ body {
     border: none;
     background: transparent;
     outline: none;
-    border-bottom: 1px solid var(--input-border-color, var(--color));
+    border-bottom: 1px solid var(--input-border-color);
 }
 
 .signup form button {
@@ -43,9 +45,9 @@ body {
     border: none;
     letter-spacing: 4px;
     color: var(--color);
-    background: var(--button-background, #4d484843);
+    background: var(--button-background);
     font-size: 20px;
-    transition: 0.5s;
+    transition: background 0.5s;
 }
 
 .signup form button:hover {
