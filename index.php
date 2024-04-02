@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
 
     $conn = connectDatabase();
     if (!$conn) {
-        echo "error";
+        echo "Connection failed!";
         exit();
     }
 
@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
     $message = $_POST["message"];
 
     try {
-     
+
         $sql = "INSERT INTO kontakti (emri, email, message) VALUES (:emri, :email, :message)";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':emri', $name);
@@ -27,11 +27,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
         $stmt->bindParam(':message', $message);
         $stmt->execute();
 
-        
-        echo "Mesazhi u dergua me sukses!";
+
+        echo "Succsess!";
     } catch (PDOException $e) {
-        
-        echo "Gabim gjate dergimit të mesazhit. Ju lutem provoni perseri.";
+
+        echo "Error sending the message!";
     }
 }
 
@@ -177,9 +177,54 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
                 <input type="submit" name="submit" value="Submit">
             </form>
         </div>
-        
+
     </section>
-    
+    <script>
+        const nameInput = document.querySelector("#name");
+        const email = document.querySelector("#email");
+        const message = document.querySelector("#message");
+        const success = document.querySelector("#success");
+        const errorNodes = document.querySelectorAll(".error");
+
+        function validateForm() {
+            clearMessages();
+            let errorFlag = false;
+
+            if (nameInput.value.length < 1) {
+                errorNodes[0].innerText = "Please fill out this field";
+                nameInput.classList.add("error-border");
+                errorFlag = true;
+            }
+            if (!emailIsValid(email.value)) {
+                errorNodes[1].innerText = "Please fill out this field";
+                email.classList.add("error-border");
+                errorFlag = true;
+            }
+            if (message.value.length < 1) {
+                errorNodes[2].innerText = "Please fill out this field";
+                message.classList.add("error-border");
+                errorFlag = true;
+            }
+            if (!errorFlag) {
+                success.innerText = "Message is send successfuly!";
+            }
+        }
+
+        function clearMessages() {
+            for (let i = 0; i < errorNodes.length; i++) {
+                errorNodes[i].innerText = "";
+            }
+            success.innerText = "";
+            nameInput.classList.remove("error-border");
+            email.classList.remove("error-border");
+            message.classList.remove("error-border");
+        }
+
+        function emailIsValid(email) {
+            let pattern = /\S+@\S+.\S+/;
+            return pattern.test(email);
+        }
+    </script>
 </body>
 
 </html>
