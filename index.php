@@ -3,9 +3,40 @@
 //Drin Citaku   Gr: G3A  id:222364985  
 //Shend Rudari  Gr: G3B  id:222364786
 session_start();
+
 require_once 'crud/functions.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset ($_POST["login"])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
+
+    $conn = connectDatabase();
+    if (!$conn) {
+        echo "error";
+        exit();
+    }
+
+    $name = $_POST["name"];
+    $email = $_POST["email"];
+    $message = $_POST["message"];
+
+    try {
+     
+        $sql = "INSERT INTO kontakti (emri, email, message) VALUES (:emri, :email, :message)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':emri', $name);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':message', $message);
+        $stmt->execute();
+
+        
+        echo "Mesazhi u dergua me sukses!";
+    } catch (PDOException $e) {
+        
+        echo "Gabim gjate dergimit të mesazhit. Ju lutem provoni perseri.";
+    }
+}
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
     $email = $_POST["email"];
     $password = $_POST["password"];
 
@@ -59,8 +90,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset ($_POST["login"])) {
             <a href="about.php">About Us</a>
             <a href="#contact">Contact us</a>
             <a href="#">|</a>
-            <?php if (isset ($_SESSION['email'])): ?>
-                <?php if (isset ($user) && $user['role'] == 'admin'): ?>
+            <?php if (isset($_SESSION['email'])): ?>
+                <?php if (isset($user) && $user['role'] == 'admin'): ?>
                     <a href="AdminDashboard.php" class="adminLink">Admin</a>
                 <?php else: ?>
                     <a href="news.php">News</a>
@@ -130,8 +161,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset ($_POST["login"])) {
 
         <div class="contact-container">
             <h2>Contact Us</h2>
-            <p> <em> If you have any questions or inquiries, feel free to reach out to us. We are here to assist you on your
-                fitness journey. </em></p>
+            <p> <em> If you have any questions or inquiries, feel free to reach out to us. We are here to assist you on
+                    your
+                    fitness journey. </em></p>
             <form action="#" method="post">
                 <label for="name">Your Name</label>
                 <input type="text" id="name" name="name" required>
@@ -145,7 +177,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset ($_POST["login"])) {
                 <input type="submit" name="submit" value="Submit">
             </form>
         </div>
+        
     </section>
+    
 </body>
 
 </html>
