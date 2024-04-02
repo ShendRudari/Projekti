@@ -1,8 +1,7 @@
 <?php
 session_start();
 
-
-if (isset ($_SESSION['email'])) {
+if (isset($_SESSION['email'])) {
     header("Location: news.php");
     exit();
 }
@@ -22,29 +21,28 @@ try {
 
 $message = "";
 
-if (isset ($_POST['submit'])) {
+if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $password = $_POST['password'];
     $confirmPassword = $_POST['confirmPassword'];
 
-
     if ($password !== $confirmPassword) {
         $message = "Passwords do not match!";
     } else {
-      
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    
+        //nese duam ta bejme hash passwordin.
+        //$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
         $sql = 'INSERT INTO users (emri, email, password) VALUES (:emri, :email, :password)';
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':emri', $name);
         $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':password', $hashedPassword);
+        $stmt->bindParam(':password', $password);//&hashedPassword
 
         if ($stmt->execute()) {
             $_SESSION['email'] = $email;
-            header("Location: index.php"); 
+            header("Location: index.php");
             exit();
         } else {
             $message = "There is a problem creating this account!";
@@ -67,7 +65,7 @@ if (isset ($_POST['submit'])) {
     <div class="signup">
         <h2>Signup</h2>
 
-        <?php if (!empty ($message)): ?>
+        <?php if (!empty($message)): ?>
             <p>
                 <?php echo $message; ?>
             </p>
